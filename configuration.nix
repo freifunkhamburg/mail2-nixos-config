@@ -32,6 +32,9 @@
     firewall.rejectPackets = true;
   };
 
+  # Automatic update each day at 04:40. Will not restart the system, so a reboot every now and then is a good idea.
+  system.autoUpgrade.enable = true;
+
   # Select internationalisation properties.
   i18n = {
   #   consoleFont = "Lat2-Terminus16";
