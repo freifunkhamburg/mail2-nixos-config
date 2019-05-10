@@ -72,6 +72,13 @@
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
+  users.extraUsers."Entil_Zha" = {
+    isNormalUser = true;
+    extraGroups = [ "wheel" ];
+    openssh.authorizedKeys.keys = [
+    "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAgEAzeqpZiYL+NFikGyVU7h+5nvAovlJBQfwQHE7mXkYVokHDCykHDUZfeR2HKARaGnCcYyvWHZeZPDJzQg05INRZyook82qKhqc/aICthP0dolr8ImYsilkbSPd1SttZWEsURVz8UO9NtM6n++04p6ArCRL4eZMzq8OeeGc+Vmyu4jRcsIA3t6kuXJ5FECmNn9YOmV8gX5WOzN0akPRwlE1XmBszU7r+OktYOmg4P7kJpmRoV8hR6zBtAcSjCuELJhE7aKGa2UnIoWzLMt5JV0JP4fPjbZxYpWmGxwLgIp/YXuJ/+xVwGTAjUXanqyV4RPpSNQa78CZ4g5rW7ak9xWN46ChWO9ishQDak2o6jdCli2Vjj32ap/snfDMiHylbbgpdmF2l8CTTo2GODfvKEZI1kzFz/Cfeky/uZzvvVjgbVUAwIFscFWyTpgnZibEA/H5xCkVxI+icFzQALgnBVY/75Jw8jrdUzcMDWNKjMaGhegXJAuIZXueDJTuxiZcAXXTWdPqQCTitQitE6Gf/gnijmtBBKT3uVk/ZBwhZH5GrBRNL+A3dlHAqGvl1SlajQtAzhaZmEp1yIeObhzXJKi41vHSOxfJzQDqQz0H2ljmAK6c/0bEyohxiQ3+/pIyvHG4hgSKWG8ng7Np2bD7xoWV7WgZBys3TsDZdeTu8xMyl7U="
+    ];
+  };
   users.extraUsers.root = {
     hashedPassword = "!";
     openssh.authorizedKeys.keys = [
@@ -80,8 +87,8 @@
     "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDHTKjXa1Z+isxj7bajBx7BLP+5z2KSlMVcQhXUHWdQJHdMPG18We2Lc3MXp2NE8uxzCHwqP3UKjYBmG4cp7h5mpUMCIaRc6SDg5rpipE9eSMFeoE8qgnjCf7gNl0xWP1YqPruYIDgK3e4AWr5Z8xEHECbWQYlcCo82jR9RoWP6fgNxSDPzKGwMv5cyXEw2+2DHhuDHUXA8cz9sY32gum/jE8GyJRTJEfZ7y3wSe4ufH+AdzbIM0dohMZK9RNdKCll6utdyBV2Pj359ShzBWrBHpi77R5yHOTtp5IKnL66HJ9Y6Ig0cy9rTiZwFkGkYiX73GCNgQHm/fJhc4Qs+g2IVyJNaORjKKE6IrxA5/KJLnDY49pJfOIZEOUKn1jWiwxib/7pPT2RFxVxfe1wpqmG+mI6YD/WK58TFEGvsgeWuTfFN7EWFX2BhElHYtlupooyw2FAGQPa73mdUpXji1/PnBrwjYVyzOy+tS73aUVrge8ymIPWRdxh99h4Rxfta3xFAGvX4qZZUtoK2114qZJ8rK3QzXTarKOpmN06b0m6nsdvzxWHKq5d1eI4P2Zm9P2IeaAklPCMgRb72L3bA19Dvp77PkucBc8er5XL/HSldvVPBUyBQ7CZ56lFpnnH0biKtJmC/kwKcFnVBjsgKL4+/yBoN+H9KqKfeDqDOBqVhsw== Alexander"
     "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDFtVHDcpRTpKiNLRuhtIp/RQlJpfJoDlGpfWeBEj1mUo/7XhUWCVsRb/VidC3zoGt1fJ1yV0wKm+NhCq9qBlOyu1Xza9D77Eowij4Qv46vxnnh94XYG+KU5FoAQ+FWQftdF4YXLMPOi+idIC6KDkfJftky1WuiTvTHskjkZ+fPE/o26P2lIvHHv67xqFWJeoLgIEC7BQmDeGpSBN8gCGEhxFZ2vKHcOU8rfMPHwNbAQHW9PXhb9jNIkRck3CM8LwiUxm8Ya5BEwx5BJgoBSsPT6verLJ74uVNttDuPsz+mqey9nM01Wlt86d06WE5YjQb/AEpg+uKW9LZ63fwltgWn leo"
     "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDbTKYDYRivHfk/nDYvrgV51DFMkmDwnet1iaFoNTEqx99rVPQMchlKtCEwzKiuzjPyc7ztrMpnCkUKIhBs2C5eVoWHtiCebFn5jMM6YA1+/gP0xJF+n9YjO6BIQC1MeppSjO/yP/rjcrEc1DVAY95ofDge94vRAeAUhADDOvEqUd3OOvRwc5WWN+PuCnnSqo1am9NMMyZftI9FpkpswKhkEQfIteadEVySWQtO4rs5GC6JcfE2ZIZEEjp9tMm7zr6FNnCJNuuTU4trWUJDKRiKnyNyKb9GZHQ+LA1VPN8Xyi0gVhdyE5I9z83xTeYRbmW49gtJ9iCQxzcBaylByTRZQYLZWoQIqOBtjVx08CwMM4g+U9JvEULqkRbxmfO9kCPGSm1ZrUN4Dfz087Lt3kebq+sGIgD/yJG5ZS5hbLjq3+ClQA9C6pgu8xsidgDNZV+f8h6pEBTFH5bdhOvJVa3XdemlKKD5VxZdjPlgqrBBobVkCvvwucCXUqpcHRTaygwlQzWMUFonxdJF3sil+x5d9UtJyPt6CH8QHOVeTKe67TgS3b6LA0WscUGhSFqwaOGaNEiHWqCWj/mM6AdepWHuspW4mbSv2cUk5wxIXqj0JVqE5bY9iiRODpOpx2a3+XhSLA8JVgvm7JRY1+tG9/PwtsoSvv3/y3IPcQHYIfmYXw== openpgp:0x36379070 leo"
-  ];
-	};
+    ];
+  };
 
   # This value determines the NixOS release with which your system is to be
   # compatible, in order to avoid breaking some software such as database
