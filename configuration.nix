@@ -20,10 +20,15 @@
   boot.loader.grub.device = "/dev/vda"; # or "nodev" for efi only
 
   networking = {
-    hostName = "mail2"; # Define your hostname.
+    hostName = "mail2";
+    domain = "hamburg.freifunk.net";
     dhcpcd.enable = false;
     interfaces.ens3 = {
       ipv4.addresses = [ { address = "193.96.224.229"; prefixLength = 29; } ];
+      ipv4.routes = [
+        { address = "100.64.112.248"; prefixLength = 29; }
+        { address = "10.112.0.0"; prefixLength = 16; via = "100.64.112.251"; }
+      ];
       ipv6.addresses = [ { address = "2a03:2267:ffff:c00::e"; prefixLength = 64; } ];
     };
     defaultGateway = { address = "193.96.224.225"; };
