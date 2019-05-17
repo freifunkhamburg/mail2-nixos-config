@@ -27,7 +27,6 @@ in
     default = true;
     root = "${postfixadminpkg}/public";
     extraConfig = ''
-      access_log /tmp/nginx/log/$host combined;
       charset utf-8;
 
       etag off;
