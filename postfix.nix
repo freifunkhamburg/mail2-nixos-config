@@ -54,6 +54,7 @@ in
     enableSmtp = true;
     enableSubmission = true;
     config = {
+      mydestination = "";
       myhostname = config.variables.myFQDN;
       mynetworks_style = "host";
       recipient_delimiter = "+";
