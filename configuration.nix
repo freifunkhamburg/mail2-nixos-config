@@ -14,7 +14,7 @@
 
   # Configuration options for the mailserver
   variables = {
-    mailAdmin = "postmaster@mail2.hamburg.freifunk.net";
+    mailAdmin = "postmaster@mail.hamburg.freifunk.net";
     useSSL = true;
   };
   # Use the GRUB 2 boot loader.
