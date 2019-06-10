@@ -6,7 +6,7 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
       ./hardware-configuration.nix
       ./sshusers.nix
       ./variables.nix
@@ -47,6 +47,11 @@
 
   # Automatic update each day at 04:40. Will not restart the system, so a reboot every now and then is a good idea.
   system.autoUpgrade.enable = true;
+  nix = {
+    autoOptimiseStore = true;
+    gc.automatic = true;
+    gc.options = "--delete-older-than 14d";
+  };
 
   # Select internationalisation properties.
   i18n = {
