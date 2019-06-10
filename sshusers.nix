@@ -1,5 +1,15 @@
 { pkgs, ... }:
 
+# Setup users. To add a new user:
+# 1. Add the name of the user to the list in the second-to-last line
+# 2. Make sure that the git repo contains the key as "$USER.pub"
+# 3. Make sure that the commit ("rev") contains the latest commit hash. If it correct, jump to step 99.
+# 4. If you changed the commit, manipulate the sha512 entry by changing the first character from 0 to 1 or 1 to 0.
+# 5. Run "nixos-rebuild build"
+# 6. Wait for a message about an invalid hash and replace the hash in this file with the new one.
+# 7. Run "nixos-rebuild switch"
+# 8. Let the user login and change their password
+
 let
   sshkeys = pkgs.fetchFromGitHub {
     owner = "freifunkhamburg";
