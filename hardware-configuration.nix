@@ -22,8 +22,10 @@
       fsType = "ext4";
     };
 
+  # encrypt the swap device. why not.
+  # needs the UUID of the partition, as the swap id will be lost on every boot.
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/4aa2212c-ecd3-4609-a406-021071b2df0f"; }
+    [ { device = "/dev/disk/by-partuuid/f1251a25-02"; randomEncryption.enable = true; }
     ];
 
   nix.maxJobs = lib.mkDefault 1;
