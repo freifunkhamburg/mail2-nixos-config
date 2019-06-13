@@ -24,7 +24,7 @@
     roundcubePhpfpmHostPort = "127.0.0.1:9001";
     roundcubeUser = "roundcube";
     useSSL = false;
-    vmailBaseDir = "/var/vmail";
+    vmailBaseDir = "/srv/vmail";
     vmailGID = 10000;
     vmailGroup = "vmail";
     vmailUID = 10000;
