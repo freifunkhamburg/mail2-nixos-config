@@ -57,6 +57,7 @@
         );
         $CONF['footer_text'] = "";
         $CONF['footer_link'] = "";
+        $CONF['page_size'] = '100000';
         ?>
       '');
       cacheDir = config.variables.postfixadminpkgCacheDir;
