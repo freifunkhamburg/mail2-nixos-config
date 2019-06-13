@@ -19,7 +19,7 @@ let
       ''
     }
 
-    disable_plaintext_auth = no
+    disable_plaintext_auth = yes
     auth_mechanisms = plain login
 
     userdb {
