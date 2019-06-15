@@ -1,8 +1,8 @@
-{ pkgs, stdenv, ... }:
+{ pkgs, ... }:
 
 let
   borgPassCommand = pkgs.writeScript "borgPassCommand" ''
-    #!${stdenv.shell}
+    #!${pkgs.stdenv.shell}
     set -euo pipefail
     # Make sure everything but the password ends up on stderr
     exec 3>&1 >&2
@@ -33,7 +33,7 @@ in
     };
     encryption = {
       mode = "repokey";
-      passCommand = borgPassCommand;
+      passCommand = "${borgPassCommand}";
     };
     compression = "auto,lz4";
     startAt = "hourly";
