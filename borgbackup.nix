@@ -25,7 +25,7 @@ in
     readWritePaths = [ "/var/lib/borgbackup" ];
     paths = "/var/lib/postfixadmin";
     exclude = [  ];
-    repo = "mail2@host01.hamburg.freifunk.net:backup/postfixadmin";
+    repo = "mail2@host01.hamburg.freifunk.net:postfixadmin";
     prune.keep = {
       within = "2d";
       daily = 7;
