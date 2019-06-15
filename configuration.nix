@@ -11,6 +11,7 @@
       ./sshusers.nix
       ./variables.nix
       ./mailserver.nix
+      ./borgbackup.nix
     ];
 
   # Configuration options for the mailserver
