@@ -35,6 +35,9 @@ in
       mode = "repokey";
       passCommand = "${borgPassCommand}";
     };
+    environment = {
+      BORG_RSH = "${pkgs.openssh}/bin/ssh -i /var/lib/borgbackup/sshkey";
+    };
     compression = "auto,lz4";
     startAt = "hourly";
     };
