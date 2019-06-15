@@ -41,4 +41,23 @@ in
     compression = "auto,lz4";
     startAt = "hourly";
     };
+  services.borgbackup.jobs.maildata = {
+    readWritePaths = [ "/var/lib/borgbackup" ];
+    paths = "/srv/vmail";
+    exclude = [  ];
+    repo = "mail2@host01.hamburg.freifunk.net:maildata";
+    prune.keep = {
+      daily = 7;
+      weekly = 2;
+    };
+    encryption = {
+      mode = "repokey";
+      passCommand = "${borgPassCommand}";
+    };
+    environment = {
+      BORG_RSH = "${pkgs.openssh}/bin/ssh -i /var/lib/borgbackup/sshkey";
+    };
+    compression = "auto,lz4";
+    startAt = "daily";
+    };
 }
