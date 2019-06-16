@@ -83,6 +83,8 @@
     # Only allow login through pubkey
     passwordAuthentication = false;
   };
+  # Support mosh connections
+  programs.mosh.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
