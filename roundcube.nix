@@ -96,6 +96,18 @@ in
         chown -c "${config.variables.roundcubeUser}":root "${config.variables.roundcubeDataDir}/des_key"
         chmod -c 400 "${config.variables.roundcubeDataDir}/des_key"
       fi
+      if [ -s "${config.variables.roundcubeDataDir}/roundcube.sqlite" ]; then
+        # Just go ahead and remove the sessions on a boot
+        ${pkgs.sqlite}/bin/sqlite "${config.variables.roundcubeDataDir}/roundcube.sqlite" "DELETE FROM session;"
+      fi
+    '';
+    serviceConfig.ExecStop = pkgs.writeScript "roundcube-delete-sessions" ''
+      #!${pkgs.stdenv.shell}
+      set -euo pipefail
+      if [ -s "${config.variables.roundcubeDataDir}/roundcube.sqlite" ]; then
+        # Just go ahead and remove the sessions on shutdown.
+        ${pkgs.sqlite}/bin/sqlite "${config.variables.roundcubeDataDir}/roundcube.sqlite" "DELETE FROM session;"
+      fi
     '';
   };
   services.phpfpm.pools."${poolName}" = {
