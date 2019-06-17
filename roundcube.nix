@@ -98,7 +98,7 @@ in
       fi
       if [ -s "${config.variables.roundcubeDataDir}/roundcube.sqlite" ]; then
         # Just go ahead and remove the sessions on a boot
-        ${pkgs.sqlite}/bin/sqlite "${config.variables.roundcubeDataDir}/roundcube.sqlite" "DELETE FROM session;"
+        ${pkgs.sqlite}/bin/sqlite3 "${config.variables.roundcubeDataDir}/roundcube.sqlite" "DELETE FROM session;"
       fi
     '';
   };
