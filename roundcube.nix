@@ -101,14 +101,6 @@ in
         ${pkgs.sqlite}/bin/sqlite "${config.variables.roundcubeDataDir}/roundcube.sqlite" "DELETE FROM session;"
       fi
     '';
-    serviceConfig.ExecStop = pkgs.writeScript "roundcube-delete-sessions" ''
-      #!${pkgs.stdenv.shell}
-      set -euo pipefail
-      if [ -s "${config.variables.roundcubeDataDir}/roundcube.sqlite" ]; then
-        # Just go ahead and remove the sessions on shutdown.
-        ${pkgs.sqlite}/bin/sqlite "${config.variables.roundcubeDataDir}/roundcube.sqlite" "DELETE FROM session;"
-      fi
-    '';
   };
   services.phpfpm.pools."${poolName}" = {
     listen = config.variables.roundcubePhpfpmHostPort;
