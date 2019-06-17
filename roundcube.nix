@@ -14,7 +14,7 @@ let
       $config['smtp_user'] = '%u';
       $config['smtp_pass'] = '%p';
       $config['product_name'] = 'Webmail';
-      $config['des_key'] = 'JQgS7JcnFMNcU3cHKrr880wO';
+      $config['des_key'] = file_get_contents("${config.variables.roundcubeDataDir}/des_key");;
       $config['plugins'] = array(
         'archive',
         'managesieve',
@@ -91,6 +91,11 @@ in
       mkdir -p ${config.variables.roundcubeDataDir}/temp ${config.variables.roundcubeDataDir}/logs
       chown -Rc ${config.variables.roundcubeUser} ${config.variables.roundcubeDataDir}
       chmod -c 700 ${config.variables.roundcubeDataDir}
+      if [ ! -s "${config.variables.roundcubeDataDir}/des_key" ]; then
+        ${pkgs.coreutils}/bin/dd if=/dev/urandom bs=32 count=1 2>/dev/null | ${pkgs.coreutils}/bin/base64 > "${config.variables.roundcubeDataDir}/des_key"
+        chown -c "${config.variables.roundcubeUser}":root "${config.variables.roundcubeDataDir}/des_key"
+        chmod -c 400 "${config.variables.roundcubeDataDir}/des_key"
+      fi
     '';
   };
   services.phpfpm.pools."${poolName}" = {
