@@ -1,6 +1,9 @@
 { config, lib, pkgs, ... }:
 
 let
+  submission_header_cleanup_regex = pkgs.writeText "submission_header_cleanup_regex" ''
+    /^Received:.*by ${config.variables.myFQDN} \(Postfix/ IGNORE
+  '';
   pfvirtual_mailbox_domains = pkgs.writeText "virtual_mailbox_domains.cf" ''
     dbpath = ${config.variables.pfadminDataDir}/postfixadmin.db
     query = SELECT domain FROM domain WHERE domain='%s' AND active = '1'
@@ -74,6 +77,13 @@ in
       virtual_mailbox_domains = "proxy:sqlite:${pfvirtual_mailbox_domains}";
       virtual_mailbox_maps = "proxy:sqlite:${pfvirtual_mailbox_maps}, proxy:sqlite:${pfvirtual_alias_domain_mailbox_maps}";
       virtual_transport = "lmtp:unix:${config.variables.dovecotLmtpSocket}";
+    };
+    masterConfig.submission.args = [ "-o" "cleanup_service_name=submission_cleanup" ];
+    masterConfig."submission_cleanup" = {
+        command = "cleanup";
+        args = [ "-o" "header_checks=regexp:${submission_header_cleanup_regex}" ];
+        private = false;
+        maxproc = 0;
     };
     rootAlias = config.variables.mailAdmin;
     postmasterAlias = config.variables.mailAdmin;
