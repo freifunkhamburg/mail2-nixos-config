@@ -42,7 +42,10 @@
     };
     defaultGateway = { address = "193.96.224.225"; };
     defaultGateway6 = { address = "2a03:2267:ffff:c00::1"; };
-    nameservers = [ "46.182.19.48" "2a02:2970:1002::18" ]; # lieber digitalcourage als google
+    nameservers = [
+      "46.182.19.48" "2a02:2970:1002::18" # Digitalcourage DNS Server
+      "194.150.168.168" # AS250, https://www.ccc.de/de/censorship/dns-howto
+    ];
     firewall.rejectPackets = true;
   };
 
