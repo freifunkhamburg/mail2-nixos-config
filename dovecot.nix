@@ -58,6 +58,7 @@ let
     protocol imap {
       mail_plugins = $mail_plugins imap_sieve
     }
+    imap_idle_notify_interval = 29 mins
 
     namespace inbox {
       inbox = yes
