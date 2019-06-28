@@ -42,7 +42,7 @@
     };
     defaultGateway = { address = "193.96.224.225"; };
     defaultGateway6 = { address = "2a03:2267:ffff:c00::1"; };
-    nameservers = [ "8.8.8.8" ];
+    nameservers = [ "46.182.19.48" "2a02:2970:1002::18" ]; # lieber digitalcourage als google
     firewall.rejectPackets = true;
   };
 
