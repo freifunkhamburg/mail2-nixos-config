@@ -102,6 +102,18 @@
   users.extraUsers.root = {
     hashedPassword = "!";
   };
+  users.motd = with config; ''
+    Welcome to ${networking.hostName}.${networking.domain}
+
+    - This server is NixOS
+    - All changes must be done through the git repository at
+      /etc/nixos or https://github.com/freifunkhamburg/mail2-nixos-config/
+    - Other changes will be lost
+
+    OS:      NixOS ${system.nixos.release} (${system.nixos.codeName})
+    Version: ${system.nixos.version}
+    Kernel:  ${boot.kernelPackages.kernel.version}
+    '';
 
   # This value determines the NixOS release with which your system is to be
   # compatible, in order to avoid breaking some software such as database
