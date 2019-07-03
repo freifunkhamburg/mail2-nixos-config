@@ -93,7 +93,6 @@ let cfg = config.system.autoUpgrade; in
       script = ''
         ${lib.optionalString cfg.allowReboot ''
           set -euo pipefail
-          set -x
           T=$(mktemp -d)
           cd "$T"
           ${config.system.build.nixos-rebuild}/bin/nixos-rebuild build ${toString cfg.flags}
