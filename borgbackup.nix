@@ -40,8 +40,8 @@ in
     };
     compression = "auto,lz4";
     startAt = "hourly";
-    extraArgs = "--info";
-    };
+    extraArgs = "--info --stats";
+  };
   services.borgbackup.jobs.maildata = {
     readWritePaths = [ "/var/lib/borgbackup" ];
     paths = "/srv/vmail";
@@ -60,6 +60,6 @@ in
     };
     compression = "auto,lz4";
     startAt = "daily";
-    extraArgs = "--info";
-    };
+    extraArgs = "--info --stats";
+  };
 }
