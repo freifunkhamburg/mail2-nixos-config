@@ -8,6 +8,7 @@ let
     user_query = SELECT username AS user FROM mailbox WHERE username = '%Lu' AND active='1'
   '';
   dovecotConf = pkgs.writeText "dovecot.conf" ''
+    sendmail_path = /run/wrappers/bin/sendmail
     default_internal_user = dovecot2
     default_internal_group = dovecot2
     protocols = imap lmtp pop3 sieve
