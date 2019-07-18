@@ -49,6 +49,7 @@
       "194.150.168.168" # AS250, https://www.ccc.de/de/censorship/dns-howto
     ];
     firewall.rejectPackets = true;
+    firewall.logRefusedConnections = false;
   };
 
   # Automatic update each day at 04:40. Will not restart the system, so a reboot every now and then is a good idea.
