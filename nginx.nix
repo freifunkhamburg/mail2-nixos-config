@@ -3,8 +3,5 @@
 {
   services.nginx = {
     logError = "/dev/null";
-    appendConfig = ''
-      access_log off;
-    '';
   };
 }

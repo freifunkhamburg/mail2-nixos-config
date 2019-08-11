@@ -10,6 +10,9 @@ in
     forceSSL = true;
     enableACME = true;
     root = "${hopglass-fe}";
+    extraConfig = ''
+      access_log off;
+    '';
     locations."/" = {
         extraConfig = ''
           index index.html;

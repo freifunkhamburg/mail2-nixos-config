@@ -31,6 +31,9 @@ in
     forceSSL = config.variables.useSSL;
     enableACME = config.variables.useSSL;
     root = "${roundcube}/public_html";
+    extraConfig = ''
+      access_log off;
+    '';
     locations."~ ^/favicon.ico/.*$" = {
         extraConfig = "try_files $uri kins/larry/images/$uri;";
     };
