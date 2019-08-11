@@ -1,0 +1,63 @@
+{
+    "dataPath": "https://hopglass-backend.hamburg.freifunk.net/",
+    "siteName": "Freifunk Hamburg",
+    "mapSigmaScale": 1.1,
+    "showContact": false,
+    "maxAge": 30,
+    "mapLayers": [
+        {
+            "name": "OpenStreetMap",
+            "url": "https://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png",
+            "config": {
+                "maxZoom": 18,
+                "attribution": "&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a>"
+            }
+        },
+        {
+            "name": "Satellitenbild",
+            "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+            "config": {
+                "attribution": "Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community"
+            }
+        },
+        {
+            "name": "Stamen (TonerLite)",
+            "url": "https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}.png",
+            "config": {
+                "maxZoom": 20,
+                "attribution": "Map tiles by <a href=\"https://stamen.com\">Stamen Design</a>, <a href=\"https://creativecommons.org/licenses/by/3.0\">CC BY 3.0</a> &mdash; Map data &copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a>"
+            }
+        }
+    ],
+    "nodeInfos": [
+        {
+            "name": "Clientstatistik",
+            "href": "https://statistik.hamburg.freifunk.net/dashboard/db/freifunk-knoteninfo-knoten-id?var-region=ffhh&var-knoten={NODE_ID}",
+            "thumbnail": "https://statistik.hamburg.freifunk.net/render/dashboard-solo/db/freifunk-knoteninfo-knoten-id?panelId=1&var-region=ffhh&var-knoten={NODE_ID}&theme=light&width=530&height=332&from=now-3d",
+            "caption": "Verbundene Clients in den letzten 3 Tage an Knoten {NODE_ID}"
+        }
+    ],
+    "globalInfos": [
+        {
+            "name": "Clientstatistik (gesamt)",
+            "href": "https://statistik.hamburg.freifunk.net/dashboard/db/freifunk-ubersicht?var-region=ffhh",
+            "thumbnail": "https://statistik.hamburg.freifunk.net/render/dashboard-solo/db/freifunk-ubersicht?panelId=1&var-region=ffhh&theme=light&width=530&height=332&from=now-3d",
+            "caption": "Verbundene Clients in den letzten 3 Tagen"
+        }
+    ],
+    "linkInfos": [],
+    "siteNames": [
+        { "site": "ffhh", "name": "Hamburg" },
+        { "site": "ffhh-nowe", "name": "Hamburg-NordWest" },
+        { "site": "ffhh-ost", "name": "Hamburg-Ost" },
+        { "site": "ffhh-sued", "name": "Hamburg-Sued" },
+        { "site": "ffhh-west", "name": "Hamburg-West" }
+    ],
+    "domainNames": [
+        { "domain": "ffhh_nowe", "name": "Hamburg-NordWest" },
+        { "domain": "ffhh_ost", "name": "Hamburg-Ost" },
+        { "domain": "ffhh_sued", "name": "Hamburg-Sued" },
+        { "domain": "ffhh_west", "name": "Hamburg-West" }
+    ],
+    "hwImg": []
+}

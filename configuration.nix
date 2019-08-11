@@ -14,6 +14,7 @@
       ./variables.nix
       ./mailserver.nix
       ./borgbackup.nix
+      ./hopglass-frontend.nix
     ];
 
   # Configuration options for the mailserver
