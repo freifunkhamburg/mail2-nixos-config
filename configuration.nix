@@ -14,6 +14,7 @@
       ./variables.nix
       ./mailserver.nix
       ./borgbackup.nix
+      ./nginx.nix
       ./hopglass-frontend.nix
     ];
 

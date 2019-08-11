@@ -30,7 +30,7 @@ yarn2nix.mkYarnPackage {
   '';
   distPhase = ''
     cp -Rv build/* $out/
-    ln -s "$conf" $out/config.json
+    cat "$conf" > $out/config.json
   '';
   allowedReferences = [ "out" ];
   yarnPreBuild = ''
