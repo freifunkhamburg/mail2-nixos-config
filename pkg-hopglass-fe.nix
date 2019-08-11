@@ -8,16 +8,16 @@ let
     sha256 = "142av7dwviapsnahgj8r6779gs2zr17achzhr8b97s0hsl08dcl2";
   }) { inherit pkgs nodejs; };
   origPackage = builtins.fromJSON (builtins.readFile ./package.json);
+in
+yarn2nix.mkYarnPackage {
+  name = "hopglass-frontend";
   src = fetchFromGitHub {
     rev = "fc09b591dc2b9dd867559ea008f1177d52a824dd";
     owner = "hopglass";
     repo = "hopglass";
     sha256 = "0s9x466jqn7swbd35kjiaqk2lmcy9fnykhcnb1b10a2l35q655cl";
   };
-in
-yarn2nix.mkYarnPackage {
-  name = "hopglass-frontend";
-  src = src;
+  conf = conf;
   installPhase = ''
     echo ---------------------------------------------------------------------------- installPhase
     set -x
