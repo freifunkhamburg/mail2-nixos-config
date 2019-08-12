@@ -7,7 +7,6 @@ let
     repo = "yarn2nix";
     sha256 = "142av7dwviapsnahgj8r6779gs2zr17achzhr8b97s0hsl08dcl2";
   }) { inherit pkgs nodejs; };
-  origPackage = builtins.fromJSON (builtins.readFile ./package.json);
 in
 yarn2nix.mkYarnPackage {
   name = "hopglass-frontend";
