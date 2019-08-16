@@ -6,7 +6,7 @@ let
   } );
 in
 {
-  services.nginx.virtualHosts."map2.hamburg.freifunk.net" = {
+  services.nginx.virtualHosts."map.hamburg.freifunk.net" = {
     forceSSL = true;
     enableACME = true;
     root = "${hopglass-fe}";
