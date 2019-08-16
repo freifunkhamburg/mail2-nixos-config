@@ -9,6 +9,7 @@ in
   services.nginx.virtualHosts."map.hamburg.freifunk.net" = {
     forceSSL = true;
     enableACME = true;
+    default = true;
     root = "${hopglass-fe}";
     extraConfig = ''
       access_log off;

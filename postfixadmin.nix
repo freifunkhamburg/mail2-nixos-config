@@ -24,7 +24,6 @@ in
   services.nginx.virtualHosts."${config.variables.pfaDomain}" = {
     forceSSL = config.variables.useSSL;
     enableACME = config.variables.useSSL;
-    default = true;
     root = "${postfixadminpkg}/public";
     extraConfig = ''
       charset utf-8;
