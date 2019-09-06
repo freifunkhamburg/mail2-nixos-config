@@ -95,13 +95,13 @@ in
       mkdir -p ${config.variables.roundcubeDataDir}/temp ${config.variables.roundcubeDataDir}/logs
       chown -Rc ${config.variables.roundcubeUser} ${config.variables.roundcubeDataDir}
       chmod -c 700 ${config.variables.roundcubeDataDir}
-      if [ ! -s "${config.variables.roundcubeDataDir}/des_key" ]; then
-        ${pkgs.coreutils}/bin/dd if=/dev/urandom bs=32 count=1 2>/dev/null | ${pkgs.coreutils}/bin/base64 > "${config.variables.roundcubeDataDir}/des_key"
-        chown -c "${config.variables.roundcubeUser}":root "${config.variables.roundcubeDataDir}/des_key"
-        chmod -c 400 "${config.variables.roundcubeDataDir}/des_key"
-      fi
+      # Regenerate the key every now and then. This invalidates all sessions, but during reboot should be good enough.
+      [ -f "${config.variables.roundcubeDataDir}/des_key" ] && ${pkgs.coreutils}/bin/shred "${config.variables.roundcubeDataDir}/des_key"
+      ${pkgs.coreutils}/bin/dd if=/dev/urandom bs=32 count=1 2>/dev/null | ${pkgs.coreutils}/bin/base64 > "${config.variables.roundcubeDataDir}/des_key"
+      chown -c "${config.variables.roundcubeUser}":root "${config.variables.roundcubeDataDir}/des_key"
+      chmod -c 400 "${config.variables.roundcubeDataDir}/des_key"
       if [ -s "${config.variables.roundcubeDataDir}/roundcube.sqlite" ]; then
-        # Just go ahead and remove the sessions on a boot
+        # Just go ahead and remove the sessions, the key to decrypt them has just been destroyed anyway.
         ${pkgs.sqlite}/bin/sqlite3 "${config.variables.roundcubeDataDir}/roundcube.sqlite" "DELETE FROM session;"
       fi
     '';
