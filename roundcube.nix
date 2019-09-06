@@ -15,7 +15,7 @@ let
       $config['smtp_pass'] = '%p';
       $config['product_name'] = 'Webmail';
       $config['des_key'] = file_get_contents("${config.variables.roundcubeDataDir}/des_key");;
-      $config['cipher_method'] = 'AES256-GCM-SHA384';
+      $config['cipher_method'] = 'AES-256-CBC';
       $config['plugins'] = array(
         'archive',
         'managesieve',
