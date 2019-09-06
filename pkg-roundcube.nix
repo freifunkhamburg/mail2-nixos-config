@@ -2,13 +2,13 @@
 
 stdenv.mkDerivation rec {
   name = "roundcube-${version}";
-  version = "1.3.9";
+  version = "1.3.10";
   url = "https://github.com/roundcube/roundcubemail/releases/download/${version}/roundcubemail-${version}-complete.tar.gz";
 
   src = fetchurl {
     inherit url;
     curlOpts = "--location";
-    sha256 = "1b91amcpzb7935hpm67iqw92bl5r1a0rkfrc8gfm8w9sngzv8vbj";
+    sha256 = "1gx8dgrr3p6fksv3pm381a080i9r6snwcmfd1q112mqg19ai3zk9";
   };
 
   phases = [ "unpackPhase" "installPhase" ];
