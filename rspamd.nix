@@ -3,9 +3,6 @@
 let
   rspamdExtraConfig = pkgs.writeText "rspamd-extra.conf" ''
     secure_ip = [::1]
-    actions {
-      reject = null;
-    }
     options {
       filters: "chartable,dkim,dkim_signing,spf,surbl,regexp,fuzzy_check"
     }
