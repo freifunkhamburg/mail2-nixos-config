@@ -5,10 +5,8 @@
 { config, pkgs, ... }:
 
 {
-  disabledModules = [ "tasks/auto-upgrade.nix" ];
   imports =
     [
-      ./auto-upgrade.nix
       ./hardware-configuration.nix
       ./sshusers.nix
       ./variables.nix
