@@ -108,6 +108,7 @@ in
   };
   services.phpfpm.pools."${poolName}" = {
     listen = config.variables.roundcubePhpfpmHostPort;
+    user = "${config.variables.roundcubeUser}";
     extraConfig = ''
       user = ${config.variables.roundcubeUser}
       pm = dynamic

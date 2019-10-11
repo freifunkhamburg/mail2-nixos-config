@@ -83,6 +83,7 @@ in
   };
   services.phpfpm.pools."${phppoolName}" = {
     listen = phpfpmHostPort;
+    user = "${pfaUser}";
     extraConfig = ''
       user = ${pfaUser}
       pm = dynamic
