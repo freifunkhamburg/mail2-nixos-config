@@ -1,6 +1,6 @@
-{ stdenv, lib, pkgs, python, nodejs-11_x, fetchFromGitHub, fetchzip, fetchurl, conf }:
+{ stdenv, lib, pkgs, python, nodejs_latest, fetchFromGitHub, fetchzip, fetchurl, conf }:
 let
-  nodejs = nodejs-11_x;
+  nodejs = nodejs_latest;
   yarn2nix = import (fetchFromGitHub {
     rev = "3f2dbb08724bf8841609f932bfe1d61a78277232";
     owner = "moretea";
