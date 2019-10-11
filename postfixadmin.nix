@@ -84,8 +84,8 @@ in
   services.phpfpm.pools."${phppoolName}" = {
     listen = phpfpmHostPort;
     user = "${pfaUser}";
+    group = "${pfaGroup}";
     extraConfig = ''
-      user = ${pfaUser}
       pm = dynamic
       pm.max_children = 75
       pm.min_spare_servers = 5

@@ -93,12 +93,12 @@ in
     wantedBy = [ "multi-user.target" ];
     script = ''
       mkdir -p ${config.variables.roundcubeDataDir}/temp ${config.variables.roundcubeDataDir}/logs
-      chown -Rc ${config.variables.roundcubeUser} ${config.variables.roundcubeDataDir}
+      chown -Rc ${config.variables.roundcubeUser}:${config.variables.roundcubeGroup} ${config.variables.roundcubeDataDir}
       chmod -c 700 ${config.variables.roundcubeDataDir}
       # Regenerate the key every now and then. This invalidates all sessions, but during reboot should be good enough.
       [ -f "${config.variables.roundcubeDataDir}/des_key" ] && ${pkgs.coreutils}/bin/shred "${config.variables.roundcubeDataDir}/des_key"
       ${pkgs.coreutils}/bin/dd if=/dev/urandom bs=32 count=1 2>/dev/null | ${pkgs.coreutils}/bin/base64 > "${config.variables.roundcubeDataDir}/des_key"
-      chown -c "${config.variables.roundcubeUser}":root "${config.variables.roundcubeDataDir}/des_key"
+      chown -c "${config.variables.roundcubeUser}":${config.variables.roundcubeGroup} "${config.variables.roundcubeDataDir}/des_key"
       chmod -c 400 "${config.variables.roundcubeDataDir}/des_key"
       if [ -s "${config.variables.roundcubeDataDir}/roundcube.sqlite" ]; then
         # Just go ahead and remove the sessions, the key to decrypt them has just been destroyed anyway.
@@ -109,8 +109,8 @@ in
   services.phpfpm.pools."${poolName}" = {
     listen = config.variables.roundcubePhpfpmHostPort;
     user = "${config.variables.roundcubeUser}";
+    group = "${config.variables.roundcubeUser}";
     extraConfig = ''
-      user = ${config.variables.roundcubeUser}
       pm = dynamic
       pm.max_children = 75
       pm.min_spare_servers = 5
@@ -120,4 +120,11 @@ in
     '';
   };
   users.extraUsers."${config.variables.roundcubeUser}" = { };
+  users.extraGroups."${config.variables.roundcubeUser}" = { };
+  users.groups."${config.variables.roundcubeGroup}" = { };
+  users.users."${config.variables.roundcubeUser}" = {
+    isSystemUser = true;
+    group = "${config.variables.roundcubeGroup}";
+    description = "PHP User for roundcube";
+  };
 }
