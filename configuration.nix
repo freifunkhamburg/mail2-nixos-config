@@ -14,6 +14,7 @@
       ./borgbackup.nix
       ./nginx.nix
       ./hopglass-frontend.nix
+      ./gitolite.nix
     ];
 
   # Configuration options for the mailserver

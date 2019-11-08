@@ -22,6 +22,11 @@
       fsType = "ext4";
     };
 
+  fileSystems."/srv/gitolite" =
+    { device = "/dev/disk/by-uuid/5c846acb-aa67-466d-a0a3-31d1f778bf4d";
+      fsType = "ext4";
+    };
+
   # encrypt the swap device. why not.
   # needs the UUID of the partition, as the swap id will be lost on every boot.
   swapDevices =
