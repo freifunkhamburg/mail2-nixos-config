@@ -64,4 +64,25 @@ in
     extraArgs = "--info";
     extraCreateArgs = "--stats";
   };
+  services.borgbackup.jobs.gitolite = {
+    readWritePaths = [ "/var/lib/borgbackup" ];
+    paths = "/srv/gitolite";
+    exclude = [  ];
+    repo = "mail2@host01.hamburg.freifunk.net:gitolite";
+    prune.keep = {
+      daily = 7;
+      weekly = 2;
+    };
+    encryption = {
+      mode = "repokey";
+      passCommand = "${borgPassCommand}";
+    };
+    environment = {
+      BORG_RSH = "${pkgs.openssh}/bin/ssh -i /var/lib/borgbackup/sshkey";
+    };
+    compression = "auto,lz4";
+    startAt = "daily";
+    extraArgs = "--info";
+    extraCreateArgs = "--stats";
+  };
 }
