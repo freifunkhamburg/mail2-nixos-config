@@ -84,17 +84,15 @@ in
   services.phpfpm.pools."${phppoolName}" = {
     user = "${pfaUser}";
     group = "${pfaGroup}";
-    extraConfig = ''
-      pm = dynamic
-      pm.max_children = 75
-      pm.min_spare_servers = 5
-      pm.max_spare_servers = 20
-      pm.max_requests = 10
-      catch_workers_output = 1
-      php_admin_value[upload_max_filesize] = 42M
-      php_admin_value[post_max_size] = 42M
-      php_admin_value[memory_limit] = 128M
-      php_admin_value[cgi.fix_pathinfo] = 1
-    '';
+    settings = {
+      "pm" = "dynamic";
+      "pm.max_children" = 75;
+      "pm.min_spare_servers" = 5;
+      "pm.max_spare_servers" = 20;
+      "pm.max_requests" = 10;
+      "catch_workers_output" = 1;
+      "listen.owner" = "nginx";
+      "listen.group" = "nginx";
+    };
   };
 }
