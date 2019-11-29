@@ -44,7 +44,7 @@ in
         # NOTE: You should have "cgi.fix_pathinfo = 0;" in php.ini
         fastcgi_split_path_info ^(.+\.php)(/.+)$;
         # With php5-cgi alone:
-        fastcgi_pass ${phpfpmHostPort};
+        fastcgi_pass unix:${config.services.phpfpm.pools."${phppoolName}".socket};
         fastcgi_index index.php;
         fastcgi_param  GATEWAY_INTERFACE  CGI/1.1;
         fastcgi_param  SERVER_SOFTWARE    nginx;
@@ -82,7 +82,6 @@ in
     '';
   };
   services.phpfpm.pools."${phppoolName}" = {
-    listen = phpfpmHostPort;
     user = "${pfaUser}";
     group = "${pfaGroup}";
     extraConfig = ''

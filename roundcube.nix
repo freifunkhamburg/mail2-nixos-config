@@ -57,7 +57,7 @@ in
             return 404;
         }
     
-        fastcgi_pass ${config.variables.roundcubePhpfpmHostPort};
+        fastcgi_pass unix:${config.services.phpfpm.pools."${poolName}".socket};
         fastcgi_index index.php;
 
         fastcgi_param   QUERY_STRING            $query_string;
@@ -107,7 +107,6 @@ in
     '';
   };
   services.phpfpm.pools."${poolName}" = {
-    listen = config.variables.roundcubePhpfpmHostPort;
     user = "${config.variables.roundcubeUser}";
     group = "${config.variables.roundcubeUser}";
     extraConfig = ''
