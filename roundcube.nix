@@ -109,14 +109,16 @@ in
   services.phpfpm.pools."${poolName}" = {
     user = "${config.variables.roundcubeUser}";
     group = "${config.variables.roundcubeUser}";
-    extraConfig = ''
-      pm = dynamic
-      pm.max_children = 75
-      pm.min_spare_servers = 5
-      pm.max_spare_servers = 20
-      pm.max_requests = 10
-      catch_workers_output = 1
-    '';
+    settings = {
+      "pm" = "dynamic";
+      "pm.max_children" = 75;
+      "pm.min_spare_servers" = 5;
+      "pm.max_spare_servers" = 20;
+      "pm.max_requests" = 10;
+      "catch_workers_output" = 1;
+      "listen.owner" = "nginx";
+      "listen.group" = "nginx";
+    };
   };
   users.extraUsers."${config.variables.roundcubeUser}" = { };
   users.extraGroups."${config.variables.roundcubeUser}" = { };
