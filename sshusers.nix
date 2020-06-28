@@ -14,8 +14,8 @@ let
   sshkeys = pkgs.fetchFromGitHub {
     owner = "freifunkhamburg";
     repo = "ssh-keys";
-    rev = "70a8f1a4b8ddf921579986fb08b45050abeef2bc";
-    sha512 = "05p3ypg5imjxiswsspiix1l783w11ddby78bwjv0dnppbz8i4ddiy8fz70vcz4q2fbb94kwnk5zm7mz53h24z3j97xq9d485nmxinpq";
+    rev = "286c324f0c0c9ddfd37eee286d064b36dc5e4c2c";
+    sha512 = "034d5y75wr8vyz3r222hxar1wm0vmqryvgcji2lh1f8jxpgs3nchb0w2qv44msz085s9p4i92s96z9cb8zapmwj3anm0p8f156pf34c";
   };
   getpubkeys = user: builtins.readFile "${sshkeys}/${user}.pub";
   mkuser = user: { name = user; isNormalUser = true; extraGroups = [ "wheel" ]; initialPassword = "test1234"; openssh.authorizedKeys.keys = [ (getpubkeys user) ]; };
