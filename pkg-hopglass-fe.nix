@@ -1,4 +1,4 @@
-{ stdenv, lib, pkgs, python, nodejs_latest, fetchFromGitHub, fetchzip, fetchurl, conf }:
+{ stdenv, lib, pkgs, python, nodejs_latest, fetchFromGitHub, fetchpatch, fetchzip, fetchurl, conf }:
 let
   nodejs = nodejs_latest;
   yarn2nix = import (fetchFromGitHub {
@@ -17,6 +17,12 @@ yarn2nix.mkYarnPackage {
     sha256 = "0448kbibnf21p2w0rvbfnxd5f45nvi8lsv3rxyma4876cc4imwbv";
   };
   conf = conf;
+  patches = [
+    (fetchpatch {
+      url = "https://github.com/freifunkhamburg/hopglass/commit/de3fc035ad2c1f3ff6b83a51b3678d9f7037d507.patch";
+      sha256 = "0wr2a7na3jb4z40blgm0nl54bhl2ablx34hxqmgsvncair5c66a9";
+    })
+  ];
   installPhase = ''
     echo ---------------------------------------------------------------------------- installPhase
     set -x
