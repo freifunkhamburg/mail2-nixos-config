@@ -11,10 +11,10 @@ in
 yarn2nix.mkYarnPackage {
   name = "hopglass-frontend";
   src = fetchFromGitHub {
-    rev = "de3fc035ad2c1f3ff6b83a51b3678d9f7037d507";
-    owner = "freifunkhamburg";
+    rev = "a2c943115937b13a7ee11630572ebbe3fa28d80a";
+    owner = "hopglass";
     repo = "hopglass";
-    sha256 = "0ds77yrl9g5va1qcwp26idr0wh3qp3fakdd75zy9mzywz5b68dwq";
+    sha256 = "0448kbibnf21p2w0rvbfnxd5f45nvi8lsv3rxyma4876cc4imwbv";
   };
   conf = conf;
   installPhase = ''
