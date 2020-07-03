@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 
 # Setup users. To add a new user:
 # 1. Add the name of the user to the list in the second-to-last line
@@ -19,14 +19,13 @@ let
   };
   getpubkeys = user: builtins.readFile "${sshkeys}/${user}.pub";
   mkuser = user: { name = user; isNormalUser = true; extraGroups = [ "wheel" ]; initialPassword = "test1234"; openssh.authorizedKeys.keys = [ (getpubkeys user) ]; };
-  mkusers = users: map (mkuser) users;
 in
 {
-  users.users = mkusers [ "tokudan" "Entil_Zha" "alexander" ] ++ [
-    { name = "jamonitor"; isNormalUser = true; extraGroups = [ "wheel" ]; openssh.authorizedKeys.keys = [
+  users.users = (lib.genAttrs [ "tokudan" "Entil_Zha" "alexander" ] (user: mkuser "${user}")) // {
+    jamonitor = { name = "jamonitor"; isNormalUser = true; extraGroups = [ "wheel" ]; openssh.authorizedKeys.keys = [
       "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCdIGniuakk1Li8gkpGABVBgkkUGGWYcM9qQRgcuYiKK/agidZ9KQ6YktOjakWsSPRpB2OHzr8GHaVpKMNlkAsq4W20d9RrO1+FrP96rNm/Op3X10SDNMdD5qcMq36BWxMig/8L75pbGqEZmcOi4/ZbgzaTh+lWTGG/1d2xwzi99BO0YeimDoZ+fAOqxfJAVirJVBuhqf+H9FGkD1G6zdDv+EzOnj4TT70LFNC90NoVFvus2nxVv8vY1kLLVSkNMIgZXn87A7GcmjrKUmONcfx/rgkt2VwsKS7Cj2YWz8ihiy7p5wg+oS/62BTFbKcLwwpcBaMwLiESuj1+fRgjwkwaqWcVeJAzjsAuLtGtIOWeWXCUlkyv9WoFE7he0tTB76tW5ysy3ibMmFE3duPAtn7Q3Rsu4n4UL2kKdtjVqFsW3AkTi+U7gsd17K84VoCf5Is2hNqKzjXBdCs/a57ZcrwOmMqGJZJp49XTW8EEAT/Emur0b2J4BcF4z/3oqrs/h8LIyoSjLhamT9EoODHb/6iz/xRbymCzoiu1CMRUQuqThlqe7uN5InjOyXbaWmjdN+svRik4CzQ9J+xCkuw+BzhwsPu8EKV5Yo4Uvpr6UTxXzuHN5GxrUFwD8d7VBSJPuY6DfhSNwCIPB2awUxXwFhdENM2zFWEbzGQcZ1DhUh3/5w=="
-    ]; }
-  ];
+    ]; };
+  };
   security.sudo.extraConfig = ''
     ## Allow the monitor user to run commands as root
     jamonitor       ALL=(ALL)       NOPASSWD: ALL
