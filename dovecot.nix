@@ -7,18 +7,28 @@ let
     password_query = SELECT username AS user, password FROM mailbox WHERE username = '%Lu' AND active='1'
     user_query = SELECT username AS user FROM mailbox WHERE username = '%Lu' AND active='1'
   '';
-  dovecotConf = pkgs.writeText "dovecot.conf" ''
-    sendmail_path = /run/wrappers/bin/sendmail
-    default_internal_user = dovecot2
-    default_internal_group = dovecot2
-    protocols = imap lmtp pop3 sieve
-
+  dovecotConfSSL = pkgs.writeText "dovecot.conf" ''
     ${lib.optionalString (config.variables.useSSL) ''
         ssl = yes
         ssl_cert = </var/lib/acme/dovecot2.${config.variables.myFQDN}/fullchain.pem
         ssl_key = </var/lib/acme/dovecot2.${config.variables.myFQDN}/key.pem
       ''
     }
+  '';
+  dovecotConf = pkgs.writeText "dovecot.conf" ''
+    sendmail_path = /run/wrappers/bin/sendmail
+    default_internal_user = dovecot2
+    default_internal_group = dovecot2
+    protocols = imap lmtp pop3 sieve
+
+    # commented out due to a dovecot but in the most recent release
+    #$ {lib.optionalString (config.variables.useSSL) '#'
+    #    ssl = yes
+    #    ssl_cert = </var/lib/acme/dovecot2.${config.variables.myFQDN}/fullchain.pem
+    #    ssl_key = </var/lib/acme/dovecot2.${config.variables.myFQDN}/key.pem
+    #  '#'
+    #}
+    !include_try /var/lib/dovecot/ssl-keys.conf
 
     disable_plaintext_auth = yes
     auth_mechanisms = plain login
@@ -118,7 +128,7 @@ in
     };
   };
   # Make sure at least the self-signed certs are available before trying to start postfix
-  systemd.services.dovecot2.after = lib.mkIf config.variables.useSSL [ "acme-selfsigned-certificates.target" ];
+  systemd.services.dovecot2.after = [ (lib.mkIf config.variables.useSSL "acme-selfsigned-certificates.target") "vmail-setup.service" ];
   # Setup dovecot
   networking.firewall.allowedTCPPorts = [ 110 143 993 995 4190 ];
   services.dovecot2 = {
@@ -133,6 +143,11 @@ in
         mkdir -p ${config.variables.vmailBaseDir}
         chown -c ${config.variables.vmailUser}:${config.variables.vmailGroup} ${config.variables.vmailBaseDir}
         chmod -c 0700 ${config.variables.vmailBaseDir}
+        # SSL workaround for dovecot...
+        mkdir -p /var/lib/dovecot
+        cat ${dovecotConfSSL} > /var/lib/dovecot/ssl-keys.conf
+        chown root:root /var/lib/dovecot/ssl-keys.conf
+        chmod 400 /var/lib/dovecot/ssl-keys.conf
       '';
   };
 }
