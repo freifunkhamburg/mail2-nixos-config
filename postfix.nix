@@ -38,7 +38,6 @@ in
     acme.certs."postfix.${config.variables.myFQDN}" = {
       domain = "${config.variables.myFQDN}";
       group = config.services.postfix.group;
-      allowKeysForGroup = true;
       postRun = "systemctl restart postfix.service";
       # cheat by getting some settings from another certificate configured through nginx.
       user = config.security.acme.certs."${config.variables.myFQDN}".user;

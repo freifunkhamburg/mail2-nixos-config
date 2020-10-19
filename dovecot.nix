@@ -119,9 +119,7 @@ in
   security = lib.mkIf config.variables.useSSL {
     acme.certs."dovecot2.${config.variables.myFQDN}" = {
       domain = "${config.variables.myFQDN}";
-      user = config.services.nginx.user;
       group = config.services.dovecot2.group;
-      allowKeysForGroup = true;
       postRun = "systemctl restart dovecot2.service";
       # cheat by getting the webroot from another certificate configured through nginx.
       webroot = config.security.acme.certs."${config.variables.myFQDN}".webroot;
