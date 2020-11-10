@@ -40,7 +40,6 @@ in
       group = config.services.postfix.group;
       postRun = "systemctl restart postfix.service";
       # cheat by getting some settings from another certificate configured through nginx.
-      user = config.security.acme.certs."${config.variables.myFQDN}".user;
       webroot = config.security.acme.certs."${config.variables.myFQDN}".webroot;
     };
   };
