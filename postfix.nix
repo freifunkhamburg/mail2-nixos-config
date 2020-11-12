@@ -36,6 +36,7 @@ in
   security = lib.mkIf config.variables.useSSL {
     # Configure the certificates...
     acme.certs."postfix.${config.variables.myFQDN}" = {
+      email = "kontakt+blubb2@hamburg.freifunk.net";
       domain = "${config.variables.myFQDN}";
       group = config.services.postfix.group;
       postRun = "systemctl restart postfix.service";
