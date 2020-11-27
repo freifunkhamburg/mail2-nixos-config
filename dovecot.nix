@@ -118,7 +118,6 @@ in
   # Configure certificates...
   security = lib.mkIf config.variables.useSSL {
     acme.certs."dovecot2.${config.variables.myFQDN}" = {
-      email = "kontakt+blubb1@hamburg.freifunk.net";
       domain = "${config.variables.myFQDN}";
       group = config.services.dovecot2.group;
       postRun = "systemctl restart dovecot2.service";
