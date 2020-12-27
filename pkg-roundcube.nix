@@ -10,6 +10,7 @@ stdenv.mkDerivation rec {
     curlOpts = "--location";
     sha256 = "1cpcr3abjq1f2af0ca571y976yni48z3rh3x146c6ninl5ip9b4z";
   };
+  preferLocalBuild = true;
 
   phases = [ "unpackPhase" "installPhase" ];
 
