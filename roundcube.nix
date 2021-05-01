@@ -34,23 +34,28 @@ in
     root = "${roundcube}/public_html";
     extraConfig = ''
       access_log off;
-    '';
+      add_header Permissions-Policy "interest-cohort=()" always;
+      '';
     locations."~ ^/favicon.ico/.*$" = {
-        extraConfig = "try_files $uri kins/larry/images/$uri;";
+      extraConfig = ''
+        try_files $uri kins/larry/images/$uri;
+        add_header Permissions-Policy "interest-cohort=()" always;
+        '';
     };
     locations."/" = {
-        extraConfig = ''
-          index index.php;
-          try_files $uri /public/$uri /index.php$is_args$args;
-
-          etag off;
-          add_header etag "\"${builtins.substring 11 32 roundcube}\"";
+      extraConfig = ''
+        index index.php;
+        try_files $uri /public/$uri /index.php$is_args$args;
+        etag off;
+        add_header etag "\"${builtins.substring 11 32 roundcube}\"";
+        add_header Permissions-Policy "interest-cohort=()" always;
         '';
     };
     locations."~ [^/]\.php(/|$)" = {
       extraConfig = ''
         etag off;
         add_header etag "\"${builtins.substring 11 32 roundcube}\"";
+        add_header Permissions-Policy "interest-cohort=()" always;
 
         fastcgi_split_path_info ^(.+?\.php)(/.*)$;
         if (!-f $document_root$fastcgi_script_name) {

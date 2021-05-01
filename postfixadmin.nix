@@ -30,10 +30,12 @@ in
 
       etag off;
       add_header etag "\"${builtins.substring 11 32 postfixadminpkg}\"";
+      add_header Permissions-Policy "interest-cohort=()" always;
 
       index index.php;
 
       location ~* \.php$ {
+        add_header Permissions-Policy "interest-cohort=()" always;
         # Zero-day exploit defense.
         # http://forum.nginx.org/read.php?2,88845,page=3
         # Won't work properly (404 error) if the file is not stored on this

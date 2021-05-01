@@ -13,12 +13,14 @@ in
     root = "${hopglass-fe}";
     extraConfig = ''
       access_log off;
+      add_header Permissions-Policy "interest-cohort=()" always;
     '';
     locations."/" = {
         extraConfig = ''
           index index.html;
           etag off;
           add_header etag "\"${builtins.substring 11 32 hopglass-fe}\"";
+          add_header Permissions-Policy "interest-cohort=()" always;
         '';
     };
   };
