@@ -40,7 +40,7 @@
         $CONF['database_name'] = '${config.variables.pfadminDataDir}/postfixadmin.db';
         $CONF['password_expiration'] = 'NO';
         $CONF['encrypt'] = 'dovecot:BLF-CRYPT';
-        $CONF['dovecotpw'] = "${pkgs.dovecot}/bin/doveadm pw -r 12";
+        $CONF['dovecotpw'] = "${pkgs.dovecot}/bin/doveadm pw";
         $CONF['generate_password'] = 'YES';
         $CONF['show_password'] = 'NO';
         $CONF['quota'] = 'NO';
