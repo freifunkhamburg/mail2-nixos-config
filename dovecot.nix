@@ -62,6 +62,19 @@ let
       }
     }
 
+    service stats {
+      unix_listener stats-reader {
+        user = dovecot2
+        group = dovecot2
+        mode = 0660
+      }
+      unix_listener stats-writer {
+        user = dovecot2
+        group = dovecot2
+        mode = 0660
+      }
+    }
+
     protocol lmtp {
       mail_plugins = sieve
     }
