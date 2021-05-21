@@ -15,6 +15,7 @@ in
   users.users."${pfaUser}" = {
     isSystemUser = true;
     group = "${pfaGroup}";
+    extraGroups = "dovecot2";
     description = "PHP User for postfixadmin";
   };
 
