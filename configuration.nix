@@ -10,7 +10,6 @@
       ./hardware-configuration.nix
       ./acme.nix
       ./sshusers.nix
-      ./variables.nix
       ./mailserver.nix
       ./borgbackup.nix
       ./nginx.nix
