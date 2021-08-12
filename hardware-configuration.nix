@@ -17,7 +17,7 @@
       fsType = "ext4";
     };
 
-  fileSystems."/srv/vmail" =
+  fileSystems."/var/vmail" =
     { device = "/dev/disk/by-uuid/12611461-1b7a-4cbd-8fa7-dfbfdd46e1c0";
       fsType = "ext4";
     };
