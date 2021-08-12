@@ -20,13 +20,7 @@ in
   networking.domain = "hamburg.freifunk.net";
   services.mymailserver = {
     enable = true;
-    adminAddress = "kontakt@hamburg.freifunk.net";
+    adminAddress = "postmaster@mail.hamburg.freifunk.net";
     mailFQDN = "mail2.hamburg.freifunk.net";
-  };
-  users.groups."${config.variables.vmailGroup}" = { gid = config.variables.vmailGID; };
-  users.users."${config.variables.vmailUser}" = {
-    uid = config.variables.vmailUID;
-    group = config.variables.vmailGroup;
-    hashedPassword = "!";
   };
 }
