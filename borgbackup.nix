@@ -45,7 +45,7 @@ in
   };
   services.borgbackup.jobs.maildata = {
     readWritePaths = [ "/var/lib/borgbackup" ];
-    paths = "/srv/vmail";
+    paths = "/var/vmail";
     exclude = [  ];
     repo = "mail2@host01.hamburg.freifunk.net:maildata";
     prune.keep = {
