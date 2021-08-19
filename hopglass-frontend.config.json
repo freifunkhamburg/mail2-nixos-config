@@ -57,7 +57,11 @@
         { "domain": "ffhh_nowe", "name": "Hamburg-NordWest" },
         { "domain": "ffhh_ost", "name": "Hamburg-Ost" },
         { "domain": "ffhh_sued", "name": "Hamburg-Sued" },
-        { "domain": "ffhh_west", "name": "Hamburg-West" }
+        { "domain": "ffhh_west", "name": "Hamburg-West" },
+        { "domain": "ffhh_nowe_v2", "name": "Hamburg-NordWest" },
+        { "domain": "ffhh_ost_v2", "name": "Hamburg-Ost" },
+        { "domain": "ffhh_sued_v2", "name": "Hamburg-Sued" },
+        { "domain": "ffhh_west_v2", "name": "Hamburg-West" }
     ],
     "hwImg": []
 }
