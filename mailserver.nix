@@ -2,8 +2,8 @@
 
 let mymailserver = (import <nixpkgs> {}).pkgs.fetchgit {
     url = "https://codeberg.org/tokudan/nixos-mailserver.git";
-    rev = "8b91473d160ef7d78e4b84b4f083686bad73f537";
-    sha256 = "16w4arijwa306nm15dccqdgiw93kbav1ag7idlgffqkd1d04mz7r";
+    rev = "d4ce9a3484d252381d44d606be3b7506bf6ae46b";
+    sha256 = "0zrvic41n433xxpgkp12v1w0m9mfb0cwfda71565vpsl7yk6hciy";
   };
 in
 
