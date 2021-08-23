@@ -2,8 +2,8 @@
 
 let mymailserver = (import <nixpkgs> {}).pkgs.fetchgit {
     url = "https://codeberg.org/tokudan/nixos-mailserver.git";
-    rev = "15c419d488d1f4148f268d62fce0975f5a88a464";
-    sha256 = "111xjmcvr7gq4406yxdj87wvi8psq3dhb7shkdsj5d4bdr9kr13q";
+    rev = "8b91473d160ef7d78e4b84b4f083686bad73f537";
+    sha256 = "16w4arijwa306nm15dccqdgiw93kbav1ag7idlgffqkd1d04mz7r";
   };
 in
 
@@ -20,6 +20,7 @@ in
   networking.domain = "hamburg.freifunk.net";
   services.mymailserver = {
     enable = true;
+    logging = false;
     adminAddress = "postmaster@mail.hamburg.freifunk.net";
     mailFQDN = "mail2.hamburg.freifunk.net";
   };
