@@ -93,6 +93,7 @@
     enable = true;
     # Only allow login through pubkey
     passwordAuthentication = false;
+    extraConfig = "PubkeyAcceptedAlgorithms +ssh-rsa";
   };
   # Support mosh connections
   programs.mosh.enable = true;
