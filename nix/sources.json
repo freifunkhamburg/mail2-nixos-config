@@ -1,0 +1,8 @@
+{
+    "nixos-mailserver": {
+        "branch": "main",
+        "repo": "https://codeberg.org/tokudan/nixos-mailserver.git",
+        "rev": "7f2ea27801c4cbfcf46292911b5959528b4eed49",
+        "type": "git"
+    }
+}
