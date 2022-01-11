@@ -30,12 +30,6 @@
         }
     ],
     "nodeInfos": [
-        {
-            "name": "Clientstatistik",
-            "href": "https://statistik.hamburg.freifunk.net/dashboard/db/freifunk-knoteninfo-knoten-id?var-region=ffhh&var-knoten={NODE_ID}",
-            "thumbnail": "https://statistik.hamburg.freifunk.net/render/dashboard-solo/db/freifunk-knoteninfo-knoten-id?panelId=1&var-region=ffhh&var-knoten={NODE_ID}&theme=light&width=530&height=332&from=now-3d",
-            "caption": "Verbundene Clients in den letzten 3 Tage an Knoten {NODE_ID}"
-        }
     ],
     "globalInfos": [
         {
