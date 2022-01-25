@@ -18,7 +18,16 @@ let
     sha512 = "034d5y75wr8vyz3r222hxar1wm0vmqryvgcji2lh1f8jxpgs3nchb0w2qv44msz085s9p4i92s96z9cb8zapmwj3anm0p8f156pf34c";
   };
   getpubkeys = user: builtins.readFile "${sshkeys}/${user}.pub";
-  mkuser = user: { name = user; isNormalUser = true; extraGroups = [ "wheel" ]; initialPassword = "test1234"; openssh.authorizedKeys.keys = [ (getpubkeys user) ]; };
+  mkuser = user: {
+    name = user;
+    isNormalUser = true;
+    extraGroups = [ "wheel" ];
+    createHome = true;
+    initialPassword = "test1234";
+    openssh.authorizedKeys.keys = (
+      lib.splitString "\n" (getpubkeys user)
+      );
+  };
 in
 {
   users.users = (lib.genAttrs [ "tokudan" "Entil_Zha" "alexander" "kantorkel" ] mkuser) // {
