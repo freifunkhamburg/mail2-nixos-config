@@ -32,12 +32,6 @@
     "nodeInfos": [
     ],
     "globalInfos": [
-        {
-            "name": "Clientstatistik (gesamt)",
-            "href": "https://statistik.hamburg.freifunk.net/dashboard/db/freifunk-ubersicht?var-region=ffhh",
-            "thumbnail": "https://statistik.hamburg.freifunk.net/render/dashboard-solo/db/freifunk-ubersicht?panelId=1&var-region=ffhh&theme=light&width=530&height=332&from=now-3d",
-            "caption": "Verbundene Clients in den letzten 3 Tagen"
-        }
     ],
     "linkInfos": [],
     "siteNames": [
