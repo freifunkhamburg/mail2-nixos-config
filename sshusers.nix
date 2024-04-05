@@ -11,8 +11,9 @@
 # 8. Let the user login and change their password
 
 let
-  sshkeys = pkgs.fetchFromGitHub {
-    owner = "freifunkhamburg";
+  sshkeys = pkgs.fetchFromGitea {
+    domain = "git.hamburg.ccc.de";
+    owner = "freifunk";
     repo = "ssh-keys";
     rev = "189047d8d4e1cc66dd613d7ec62d2b46dfd63e4c";
     hash = "sha512-A5CM7bpUY37VNFtxTVZMh+PgpshOXcq2/8yldoBGcgkopia/7GtOc7KbYKLkkXU0WL/iJzxzkARgi5QLIDiAQQ==";
