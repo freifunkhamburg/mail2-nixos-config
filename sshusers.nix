@@ -15,8 +15,8 @@ let
     domain = "git.hamburg.ccc.de";
     owner = "freifunk";
     repo = "ssh-keys";
-    rev = "189047d8d4e1cc66dd613d7ec62d2b46dfd63e4c";
-    hash = "sha512-A5CM7bpUY37VNFtxTVZMh+PgpshOXcq2/8yldoBGcgkopia/7GtOc7KbYKLkkXU0WL/iJzxzkARgi5QLIDiAQQ==";
+    rev = "6809bee81417ecbcc2f8333a234de9d41b8847cf";
+    hash = "sha512-J5jg0U2KN00yvdozfwl9DQFyhhGY7n6wuOeandse+U34J+Ume0y3pOtk51EoWVEqWL41ptGZVcvJhhOWbIBmUw==";
   };
   getpubkeys = user: builtins.readFile "${sshkeys}/${user}.pub";
   mkuser = user: {
