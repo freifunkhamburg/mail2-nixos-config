@@ -10,12 +10,7 @@ in
 {
   # Import some configuration as they are too long to be easily readable here
   imports = [ 
-    #./dovecot.nix
-    #./postfix.nix
-    #./postfixadmin.nix
-    #./roundcube.nix
-    #./rspamd.nix
-    (import (import ./nix/sources.nix).nixos-mailserver)
+    ./nixos-mailserver/default.nix
   ];
   networking.domain = "hamburg.freifunk.net";
   services.mymailserver = {
