@@ -2,14 +2,14 @@
 
 stdenv.mkDerivation rec {
   name = "postfixadmin-${version}";
-  version = "3.3.10";
+  version = "3.3.13";
   rev = "${name}";
 
   src = fetchFromGitHub {
     inherit rev;
     owner = "postfixadmin";
     repo = "postfixadmin";
-    sha256 = "0xck6df96r4z8k2j8x20b8h2qvmzyrfsya82s4i7hfhrxii92d3w";
+    hash = "sha256-46bc34goAcRvaiyW7z0AvIcd8n61TL6vgLQ+y7nNKBQ=";
   };
 
   phases = [ "unpackPhase" "installPhase" ];
