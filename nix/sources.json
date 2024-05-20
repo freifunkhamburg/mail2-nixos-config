@@ -2,7 +2,7 @@
     "nixos-mailserver": {
         "branch": "main",
         "repo": "https://codeberg.org/tokudan/nixos-mailserver.git",
-        "rev": "021bc28509ea52895c6834aa9b3e3f460caa0bf9",
+        "rev": "0319598cd32793ef3c681c43e97848b8aadfa4df",
         "type": "git"
     }
 }
