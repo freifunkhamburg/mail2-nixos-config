@@ -25,7 +25,7 @@ stdenv.mkDerivation rec {
   meta = with lib; {
     description = "Roundcube";
     homepage    = https://roundcube.net/;
-    license     = licenses.agpl3;
+    license     = licenses.gpl3Plus;
     maintainers = with maintainers; [ tokudan ];
     platforms   = platforms.all;
   };
